@@ -5,6 +5,8 @@ import ReactPlayer from "react-player/youtube"
 import { Typography, Box, Stack } from "@mui/material"
 import { CheckCircle } from "@mui/icons-material"
 
+import DayJS from 'react-dayjs';
+
 import { Videos } from "./"
 import { fetchFromAPI } from "../utils/fetchFromAPI"
 
@@ -26,7 +28,7 @@ const VideoDetail = () => {
     if (!videoDetail?.snippet) return (<h2>Loading Video...</h2>)
 
     // Then destructure videoDetail data to use in the UI
-    const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = videoDetail
+    const { snippet: { title, channelId, channelTitle, publishedAt }, statistics: { viewCount, likeCount } } = videoDetail
 
     return (
         <Box minHeight="95vh">
@@ -35,6 +37,9 @@ const VideoDetail = () => {
                     <Box sx={{ width: "100%", position: "sticky", top: "86px", paddingInline: "16px", boxSizing: "border-box" }}>
                         <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} controls className="react-player" />
                         <Typography variant="h5" paddingBlock={2}>{title}</Typography>
+                        <Typography variant="subtitle2" fontWeight="bold" color="gray" id="video_title">
+                            Posted On <DayJS format="DD, MMM YYYY">{publishedAt}</DayJS>
+                        </Typography>
                         <Stack
                             direction="row"
                             justifyContent="space-between"

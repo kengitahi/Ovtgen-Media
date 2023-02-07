@@ -22,7 +22,7 @@ const SearchFeed = () => {
     }, [searchTerm])
 
     // To prevent an error when UI is rendered before getting data
-    if (!videos) return (<h2>Loading Search results...</h2>)
+    // if (!videos) return (<h2>Loading Search results...</h2>)
 
 
     return (
